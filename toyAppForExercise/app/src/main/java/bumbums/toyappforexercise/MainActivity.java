@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     public static class GitHubAsyncLoader extends AsyncTaskLoader<String>{
         private Bundle bundle;
+
         public GitHubAsyncLoader(Context context, Bundle bundle) {
             super(context);
             this.bundle = bundle;
