@@ -7,6 +7,8 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.concurrent.Executor;
+
 /**
  * Created by hanseungbeom on 2018. 5. 9..
  */
@@ -19,14 +21,12 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "todolist";
     private static AppDatabase sInstance;
 
-    public static  AppDatabase getsInstance(Context context){
+    public static AppDatabase getInstance(Context context){
         if(sInstance == null){
             synchronized (LOCK){
                 Log.d(LOG_TAG,"Creating new database instance");
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),
                         AppDatabase.class, AppDatabase.DATABASE_NAME)
-                        //TODO It is only for checking ..!!!!!!
-                        .allowMainThreadQueries()
                         .build();
             }
         }

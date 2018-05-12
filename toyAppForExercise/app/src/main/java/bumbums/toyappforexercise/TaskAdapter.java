@@ -5,6 +5,7 @@ package bumbums.toyappforexercise;
  */
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -84,10 +85,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         String priorityString = "" + priority; // converts int to String
         holder.priorityView.setText(priorityString);
 
-        GradientDrawable priorityCircle = (GradientDrawable) holder.priorityView.getBackground();
+
         // Get the appropriate background color based on the priority
         int priorityColor = getPriorityColor(priority);
-        priorityCircle.setColor(priorityColor);
+        holder.priorityView.setBackgroundColor(priorityColor);
     }
 
     /*
@@ -99,13 +100,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         switch (priority) {
             case 1:
-                priorityColor = ContextCompat.getColor(mContext, R.color.colorAccent);
+
+                priorityColor = mContext.getResources().getColor(R.color.materialRed);
                 break;
             case 2:
-                priorityColor = ContextCompat.getColor(mContext, R.color.colorPrimary);
+                priorityColor = mContext.getResources().getColor(R.color.materialOrange);
                 break;
             case 3:
-                priorityColor = ContextCompat.getColor(mContext, R.color.colorPrimaryDark);
+                priorityColor = mContext.getResources().getColor(R.color.materialYellow);
                 break;
             default:
                 break;
@@ -131,6 +133,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void setTasks(List<TaskEntry> taskEntries) {
         mTaskEntries = taskEntries;
         notifyDataSetChanged();
+    }
+
+    public List<TaskEntry> getTasks() {
+        return mTaskEntries;
     }
 
     public interface ItemClickListener {
